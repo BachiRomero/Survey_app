@@ -49,7 +49,8 @@ const Survey = (sequelize) => {
             //     type: DataTypes.UUID,
             //     allowNull: false
             // }
-        }
+        },
+        { timestamps: false }
     )
 }
 
