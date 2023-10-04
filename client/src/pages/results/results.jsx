@@ -1,9 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { postSurvey } from "../../redux/actions";
+import { Navigate } from "react-router-dom";
 
 function Result() {
+  const [redirectToResults, setRedirectToResults] = useState(false);
+
   const dispatch = useDispatch();
 
   const answers = useSelector((state) => state.answer);
@@ -13,7 +17,12 @@ function Result() {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(postSurvey(answers));
+    setRedirectToResults(true);
   };
+
+  if (redirectToResults) {
+    return <Navigate to="/exit" />;
+  }
 
   return (
     <div>
@@ -29,13 +38,11 @@ function Result() {
             Si sus respuestas son correctas por favor seleccionar finalizar.
             Caso contrario vovler a la pagina de la encuesta para modificar.
           </h2>
-          <Link to={"/"}>
-            <button>Volver</button>
-          </Link>
-          <Link to={"/exit"}>
-            <button type="submit">Finalizar</button>
-          </Link>
         </div>
+        <Link to={"/"}>
+          <button>Volver</button>
+        </Link>
+        <button type="submit">Finalizar</button>
       </form>
     </div>
   );

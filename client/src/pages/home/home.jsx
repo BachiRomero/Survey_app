@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSurvey } from "../../redux/actions";
+import { getSurvey, prePostSurvey } from "../../redux/actions";
 import { Navigate } from "react-router-dom";
 
 function Home() {
@@ -29,6 +29,7 @@ function Home() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    dispatch(prePostSurvey(answers));
     setRedirectToResults(true);
   };
 
