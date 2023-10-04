@@ -1,8 +1,9 @@
-import { GET_SURVEY, GET_SURVEY_ID } from '../actions/index'
+import { GET_SURVEY, POST_SURVEY } from '../actions/index'
 
 let initialState = {
     survey: [],
     surveyId: 0,
+    answer: {}
 }
 
 
@@ -14,10 +15,10 @@ function rootReducer(state = initialState, { type, payload }) {
                 survey: payload,
             };
 
-        case GET_SURVEY_ID:
+        case POST_SURVEY:
             return {
                 ...state,
-                surveyId: payload,
+                answer: payload,
             }
 
         default:

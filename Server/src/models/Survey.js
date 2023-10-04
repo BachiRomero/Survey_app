@@ -10,7 +10,7 @@ const Survey = (sequelize) => {
                 defaultValue: DataTypes.UUIDV4
             },
 
-            name: {
+            full_name: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
@@ -36,7 +36,7 @@ const Survey = (sequelize) => {
             },
 
             newsletter_subscription: {
-                type: DataTypes.BOOLEAN,
+                type: DataTypes.STRING,
                 allowNull: true
             },
 

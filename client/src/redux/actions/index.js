@@ -23,10 +23,10 @@ export function getSurveyId(id) {
     }
 }
 
-export function postSurvey(survey) {
+export function postSurvey(answers) {
     return async function (dispatch) {
         try {
-            const response = await axios.post('http://localhost:3001/', survey)
+            const response = await axios.post('http://localhost:3001/', answers)
             return dispatch({ type: POST_SURVEY, payload: response.data })
         }
         catch (error) {
