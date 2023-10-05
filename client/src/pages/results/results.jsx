@@ -36,7 +36,7 @@ function Result() {
         <div>
           <h2>
             Si sus respuestas son correctas por favor seleccionar finalizar.
-            Caso contrario vovler a la pagina de la encuesta para modificar.
+            Caso contrario volver a la página de la encuesta para modificar.
           </h2>
         </div>
         <Link to={"/"}>
