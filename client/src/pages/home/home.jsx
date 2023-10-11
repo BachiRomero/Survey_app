@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSurvey, prePostSurvey } from "../../redux/actions";
 import { Navigate } from "react-router-dom";
+import "./home.modules.css";
 
 function Home() {
   const [answers, setAnswers] = useState({
@@ -41,84 +42,93 @@ function Home() {
 
   return (
     <div>
-      <h1>Encuesta Henry</h1>
-      <form onSubmit={handleSubmit}>
-        {survey.map((survey) => (
-          <div key={survey.name}>
-            <label htmlFor="">{survey.label}: </label>
-            {survey.type === "text" && (
-              <input
-                type={survey.type}
-                name={survey.name}
-                value={answers[survey.name] || ""}
-                onChange={handleChange}
-                required
-              />
-            )}
-            {survey.type === "radio" && (
-              <div>
-                {survey.options.map((option) => (
-                  <label key={option.value}>
-                    <input
-                      type={survey.type}
-                      name={survey.name}
-                      value={option.value || ""}
-                      checked={answers[survey.name] === option.value}
-                      onChange={handleChange}
-                    />
-                    {option.label}
-                  </label>
-                ))}
-              </div>
-            )}
-            {survey.type === "tel" && (
-              <input
-                type={survey.type}
-                name={survey.name}
-                value={answers[survey.name] || ""}
-                onChange={handleChange}
-                required
-              />
-            )}
-            {survey.type === "date" && (
-              <input
-                type={survey.type}
-                name={survey.name}
-                value={answers[survey.name] || ""}
-                onChange={handleChange}
-                required
-              />
-            )}
-            {survey.type === "select" && (
-              <select
-                id={survey.name}
-                name={survey.name}
-                value={answers[survey.name] || ""}
-                onChange={handleChange}
-                required={survey.required}
-              >
-                <option value="">Seleccione una opción</option>
-                {survey.options.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            )}
-            {survey.type === "checkbox" && (
-              <label>
+      <header className="header">
+        <img
+          src="https://assets.soyhenry.com/LOGO-REDES-01_og.jpg"
+          alt=""
+          className="logo"
+        />
+        <h1>Encuesta Henry</h1>
+      </header>
+      <div className="form">
+        <form onSubmit={handleSubmit}>
+          {survey.map((survey) => (
+            <div key={survey.name}>
+              <label htmlFor="">{survey.label}: </label>
+              {survey.type === "text" && (
                 <input
-                  type="checkbox"
+                  type={survey.type}
                   name={survey.name}
-                  checked={answers[survey.name] || ""}
+                  value={answers[survey.name] || ""}
                   onChange={handleChange}
+                  required
                 />
-              </label>
-            )}
-          </div>
-        ))}
-        <button type="submit">Enviar</button>
-      </form>
+              )}
+              {survey.type === "radio" && (
+                <div>
+                  {survey.options.map((option) => (
+                    <label key={option.value}>
+                      <input
+                        type={survey.type}
+                        name={survey.name}
+                        value={option.value || ""}
+                        checked={answers[survey.name] === option.value}
+                        onChange={handleChange}
+                      />
+                      {option.label}
+                    </label>
+                  ))}
+                </div>
+              )}
+              {survey.type === "tel" && (
+                <input
+                  type={survey.type}
+                  name={survey.name}
+                  value={answers[survey.name] || ""}
+                  onChange={handleChange}
+                  required
+                />
+              )}
+              {survey.type === "date" && (
+                <input
+                  type={survey.type}
+                  name={survey.name}
+                  value={answers[survey.name] || ""}
+                  onChange={handleChange}
+                  required
+                />
+              )}
+              {survey.type === "select" && (
+                <select
+                  id={survey.name}
+                  name={survey.name}
+                  value={answers[survey.name] || ""}
+                  onChange={handleChange}
+                  required={survey.required}
+                >
+                  <option value="">Seleccione una opción</option>
+                  {survey.options.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              )}
+              {survey.type === "checkbox" && (
+                <label>
+                  <input
+                    type="checkbox"
+                    name={survey.name}
+                    checked={answers[survey.name] || ""}
+                    onChange={handleChange}
+                  />
+                </label>
+              )}
+            </div>
+          ))}
+          <button type="submit">Enviar</button>
+        </form>
+      </div>
     </div>
   );
 }
