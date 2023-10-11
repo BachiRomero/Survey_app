@@ -5,14 +5,7 @@ import { Navigate } from "react-router-dom";
 import "./home.modules.css";
 
 function Home() {
-  const [answers, setAnswers] = useState({
-    full_name: "",
-    phone_number: "",
-    start_date: "",
-    preferred_language: "",
-    how_found: "",
-    newsletter_subscription: "",
-  });
+  const [answers, setAnswers] = useState({});
   const [redirectToResults, setRedirectToResults] = useState(false);
 
   const survey = useSelector((state) => state.survey);
@@ -58,8 +51,8 @@ function Home() {
               {survey.type === "text" && (
                 <input
                   type={survey.type}
-                  name={survey.name}
-                  value={answers[survey.name] || ""}
+                  name={survey.label}
+                  value={answers[survey.label] || ""}
                   onChange={handleChange}
                   required
                 />
@@ -70,9 +63,9 @@ function Home() {
                     <label key={option.value}>
                       <input
                         type={survey.type}
-                        name={survey.name}
-                        value={option.value || ""}
-                        checked={answers[survey.name] === option.value}
+                        name={survey.label}
+                        value={option.label || ""}
+                        checked={answers[survey.label] === option.label}
                         onChange={handleChange}
                       />
                       {option.label}
@@ -83,8 +76,8 @@ function Home() {
               {survey.type === "tel" && (
                 <input
                   type={survey.type}
-                  name={survey.name}
-                  value={answers[survey.name] || ""}
+                  name={survey.label}
+                  value={answers[survey.label] || ""}
                   onChange={handleChange}
                   required
                 />
@@ -92,8 +85,8 @@ function Home() {
               {survey.type === "date" && (
                 <input
                   type={survey.type}
-                  name={survey.name}
-                  value={answers[survey.name] || ""}
+                  name={survey.label}
+                  value={answers[survey.label] || ""}
                   onChange={handleChange}
                   required
                 />
@@ -101,8 +94,8 @@ function Home() {
               {survey.type === "select" && (
                 <select
                   id={survey.name}
-                  name={survey.name}
-                  value={answers[survey.name] || ""}
+                  name={survey.label}
+                  value={answers[survey.label] || ""}
                   onChange={handleChange}
                   required={survey.required}
                 >
@@ -118,8 +111,8 @@ function Home() {
                 <label>
                   <input
                     type="checkbox"
-                    name={survey.name}
-                    checked={answers[survey.name] || ""}
+                    name={survey.label}
+                    checked={answers[survey.label] || ""}
                     onChange={handleChange}
                   />
                 </label>
